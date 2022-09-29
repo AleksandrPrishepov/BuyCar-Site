@@ -1,0 +1,15 @@
+{% extends 'car/base.html' %}
+
+{% block content %}
+<ul class="list-articles">
+{% if cat_one.sign_auto %}
+	<p><a href="{{cat_one.get_absolute_url_2}}"><img class="img-article-left" src="{{cat_one.sign_auto.url}}"
+				  width="150" height="200"></a></p>
+{% endif %}
+			<li><h2>{{cat_one.name_owner}}</h2></li>
+{% for m in model_car %}
+	<li><a href="{{m.get_absolute_url}}">{{m.model}}</a></li>
+{% endfor %}
+
+</ul>
+{% endblock %}
