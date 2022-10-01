@@ -153,3 +153,8 @@ class Private_office(DataMixin, ListView):
         context = super().get_context_data(**kwargs)
         c_def = self.get_user_context(title='Личный кабинет')
         return dict(list(context.items()) + list(c_def.items()))
+
+def delete(request, car_id):
+    person_car = OwnerAuto.objects.get(pk=car_id)
+    person_car.delete()
+    return redirect('main')

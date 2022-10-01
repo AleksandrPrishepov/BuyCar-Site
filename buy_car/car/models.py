@@ -69,6 +69,9 @@ class OwnerAuto(models.Model):
     def get_absolute_url(self):
         return reverse('about_one_car', kwargs={'about_one_car_id':self.pk})
 
+    def get_absolute_url_2(self):
+        return reverse('delete', kwargs={'car_id':self.pk})
+
     def __str__(self):
         return self.brand_owner
 
