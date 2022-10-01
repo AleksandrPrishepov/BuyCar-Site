@@ -141,5 +141,15 @@ class About(DataMixin, TemplateView):
         c_def = self.get_user_context(title='Главная страница', hard_skils=self.hard_skils)
         return dict(list(context.items()) + list(c_def.items()))
 
-class Connect(FormView):
-    pass
+class Private_office(DataMixin, ListView):
+    template_name = 'car/person_office.html'
+    model = OwnerAuto
+    context_object_name = 'person'
+
+    def get_queryset(self):
+        return OwnerAuto.objects.filter(cat_car_person__pk=self.kwargs['private_id'])
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(title='Личный кабинет')
+        return dict(list(context.items()) + list(c_def.items()))

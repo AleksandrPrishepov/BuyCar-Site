@@ -18,6 +18,7 @@
 {% for m in menu %}
 			<li><a href="{% url m.url_name %}">{{m.name}}</a></li>
 {% endfor %}
+				<li><a href="{% url 'private_office' request.user.pk %}">Личный кабинет</a></li>
 {% if request.user.is_authenticated %}
 			<li class="last">{{request.user.username}} | <a href="{% url 'logout' %}">Выход</a></li>
 {% else %}

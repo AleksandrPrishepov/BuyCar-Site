@@ -1,0 +1,27 @@
+{% extends 'car/base.html' %}
+
+{% block content %}
+<h1>Личный кабинет ({{request.user.username}})</h1>
+<h3>Все мои объявления:</h3>
+<ul class="list-articles">
+	{% for o in person %}
+			<li><div class="article-panel">
+                <p class="first">Категория:{{o.cat_car_brand}}</p>
+                <p class="last">Дата:{{o.time_update | date:"d-m-Y H:i:s"}}</p>
+            </div></li>
+            <li><h2>{{o.brand_owner}} {{o.model_owner}}</h2>
+            {% if o.photo %}
+                <p><img class="img-article-left thumb" src="{{o.photo.url}}"></p>
+			{% else %}
+				<p><img class="img-article-left thumb" src="media/uploads/not_db/no_photo.jpg" width="150" height="200"></p>
+			{% endif %}
+		<li><h2>{{o.prise}} {{o.currency}}</h2>
+	{% autoescape on %}
+	{{ o.description|truncatewords:7 }}
+	{% endautoescape %}
+			<div class="clear"></div>
+			<p class="link-read-post"><a href="{{o.get_absolute_url}}">Изменит/Удалить объявление</a></p>
+			</li>
+	{% endfor %}
+</ul>
+{% endblock %}

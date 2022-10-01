@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
 
@@ -62,6 +63,7 @@ class OwnerAuto(models.Model):
     is_published = models.BooleanField(default=True, verbose_name='Публикация', blank=True)
     cat_car_model = models.ForeignKey(AutoModel, on_delete=models.PROTECT, verbose_name='модель авто', null=True)
     cat_car_brand = models.ForeignKey(AutoBrand, on_delete=models.PROTECT, verbose_name='марка авто', null=True)
+    cat_car_person= models.ForeignKey(User, on_delete=models.PROTECT, verbose_name='пользователь', null=True)
 
 
     def get_absolute_url(self):
