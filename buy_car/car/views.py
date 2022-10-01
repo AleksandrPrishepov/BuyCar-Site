@@ -8,7 +8,7 @@ from django.views.generic import *
 from car.utils import *
 from car.forms import *
 from car.models import *
-
+a = 'проверка'
 
 class Main(DataMixin, ListView):
     model = OwnerAuto
