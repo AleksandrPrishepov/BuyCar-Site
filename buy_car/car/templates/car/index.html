@@ -27,18 +27,24 @@
 <nav class="list-page">
 	<ul>
 	{% if page_obj.has_previous %}
-		<li class="page-num"><a href="?page={{page_obj.previous_page_number}}">&lt;</a></li>
-	{% endif %}
+		<li class="page-num">
+			<a href="?page={{page_obj.previous_page_number}}">&lt;</a>
+		</li>
+{% endif %}
 	{% for p in paginator.page_range %}
-		{% if p == page_obj.number %}
-			<li class="page-num page-num-selected">{{ p }}</li>
-		{% elif p > page_obj.number|add:-2 and p < page_obj.number|add:2 %}
-			<li class="page-num"><a href="?page={{p}}">{{ p }}</a></li>
-		{% endif %}
-	{% endfor %}
-	{% if page_obj.has_next %}
-		<li class="page-num"><a href="?page={{page_obj.next_page_number}}">&gt;</a></li>
+	{% if p == page_obj.number %}
+		<li class="page-num page-num-selected">{{ p }}</li>
+	{% elif p > page_obj.number|add:-2 and p < page_obj.number|add:2 %}
+	<li class="page-num">
+		<a href="?page={{p}}">{{ p }}</a>
+	</li>
 	{% endif %}
+	{% endfor %}
+{% if page_obj.has_next %}
+<li class="page-num">
+	<a href="?page={{page_obj.next_page_number}}">&gt;</a>
+</li>
+{% endif %}
 	</ul>
 </nav>
 {% endif %}
